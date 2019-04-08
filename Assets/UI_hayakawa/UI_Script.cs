@@ -6,26 +6,19 @@ using UnityEngine.UI;
 public class UI_Script : MonoBehaviour
 {
     // 保存用　
-    private SpriteRenderer m_spriteRender;
+    //private SpriteRenderer m_spriteRender;
 
     private Text m_text;
+    
+    // 画像
+    private Image m_image;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        m_spriteRender = gameObject.GetComponent<SpriteRenderer>();
-        m_text = GetComponent<Text>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //スペースキーを押す
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            DrawSwitch();
-        }
+        m_text = gameObject.transform.GetChild(0).GetComponent<Text>();
+        m_image = gameObject.GetComponent<Image>();
     }
 
     /// <summary>
@@ -33,10 +26,16 @@ public class UI_Script : MonoBehaviour
     /// </summary>
     public void DrawSwitch()
     {
-        m_spriteRender.enabled = m_spriteRender.enabled ? false : true;
+        // 画像
+        m_image.enabled = m_image.enabled ? false : true;
+        // テキスト
+        m_text.enabled = m_image.enabled;
     }
 
-    //テキストの読み込み
+    /// <summary>
+    /// テキストの読み込み
+    /// </summary>
+    /// <param name="text">変更文字列</param>
     public void DrawText(string text)
     {
         m_text.text = text;
@@ -48,6 +47,6 @@ public class UI_Script : MonoBehaviour
     /// <returns></returns>
     public bool GetEnabled()
     {
-        return m_spriteRender.enabled;
+        return m_image.enabled;
     }
 }
