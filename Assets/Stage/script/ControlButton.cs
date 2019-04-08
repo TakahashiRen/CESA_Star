@@ -12,7 +12,9 @@ public class ControlButton : MonoBehaviour
     private List<Image> m_button = new List<Image>();
 
     // 変わる色
-    public Color m_color;
+    public Color m_afterColor;
+    public Color m_baceColor;
+
 
     // E W O P Q
     /// <summary>
@@ -37,8 +39,8 @@ public class ControlButton : MonoBehaviour
     void Update()
     {
         for(int i = 0;i <  (int)StrKey.NOME; i++){
-            if (Input.GetKey(m_key[i])) m_button[i].color = m_color;
-            else m_button[i].color = Color.white;
+            if (Input.GetKey(m_key[i])) m_button[i].color = m_afterColor;
+            else m_button[i].color = m_baceColor;
         }
     }
 }
