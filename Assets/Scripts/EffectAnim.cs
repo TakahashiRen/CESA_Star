@@ -6,6 +6,7 @@ public class EffectAnim : MonoBehaviour
 {
     bool IsAnimeEnd = false;
     public Sprite[] sprite;
+    public bool isLoop = false;
     SpriteRenderer spriteRen;
     public int maxTimeCount;
     int spriteNum;
@@ -31,7 +32,15 @@ public class EffectAnim : MonoBehaviour
             }
             else
             {
-                IsAnimeEnd = true;
+                if(isLoop)
+                {
+                    spriteNum = 0;
+                    spriteRen.sprite = sprite[spriteNum];
+                }
+                else
+                {
+                    IsAnimeEnd = true;
+                }
             }
         }
         timeCount++;
@@ -41,4 +50,9 @@ public class EffectAnim : MonoBehaviour
             Destroy(this.gameObject);
         }
 	}
+
+    public void Delete()
+    {
+        Destroy(this.gameObject);
+    }
 }
