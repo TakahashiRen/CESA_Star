@@ -15,14 +15,10 @@ public class ControlButton : MonoBehaviour
     public Color m_afterColor;
     public Color m_baceColor;
 
-
-    // E W O P Q
-    /// <summary>
-    /// 対応キーの設定
-    /// </summary>
-    private enum StrKey {E,W,O,P,Q,NOME};
-    // キー
-    private KeyCode[] m_key = { KeyCode.E, KeyCode.W, KeyCode.O, KeyCode.P, KeyCode.Q };
+    // 星のプレイヤー
+    public GameObject m_player;
+    // プレイヤースクリプト
+    private PlayerControl m_playerControl;
     
     /// <summary>
     /// 初期化
@@ -33,13 +29,27 @@ public class ControlButton : MonoBehaviour
         for(int i= 0; i < gameObject.transform.childCount; i++){
             m_button.Add(gameObject.transform.GetChild(i).GetComponent<Image>());
         }
+        m_playerControl = m_player.GetComponent<PlayerControl>();
     }
 
-    // Update is called once per frame
+
+    /// <summary>
+    /// 更新
+    /// </summary>
     void Update()
     {
-        for(int i = 0;i <  (int)StrKey.NOME; i++){
-            if (Input.GetKey(m_key[i])) m_button[i].color = m_afterColor;
+        // 色の変更
+        ChangeColor();
+    }
+
+    /// <summary>
+    /// 色の変更
+    /// </summary>
+    void ChangeColor()
+    {
+        var state = m_playerControl.GetState();
+        for(int i= 0; i < state.Count; i++) {
+            if(state[i] != 0) m_button[i].color = m_afterColor;
             else m_button[i].color = m_baceColor;
         }
     }

@@ -856,6 +856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_afterColor: {r: 0.9528302, g: 0.35506406, b: 0.6483781, a: 1}
   m_baceColor: {r: 1, g: 1, b: 1, a: 1}
+  m_player: {fileID: 685135693}
 --- !u!1 &451071753
 GameObject:
   m_ObjectHideFlags: 0

@@ -201,17 +201,13 @@ public class PlayerControl : MonoBehaviour
             }
         }
     }
-
-    void OnCollisionStay(Collision other)
+    
+    /// <summary>
+    /// 状態の取得
+    /// </summary>
+    /// <returns>現在の状態リスト</returns>
+    public List<uint> GetState()
     {
-        if (other.gameObject.tag == "Wall")
-        {
-            for (int i = 0; i < m_anchorFlag.Count; i++)
-            {
-                if(m_anchorFlag[i] == 2) {
-
-                }
-            }
-        }
+        return m_anchorFlag;
     }
 }
