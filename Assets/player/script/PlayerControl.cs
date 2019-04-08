@@ -54,12 +54,16 @@ public class PlayerControl : MonoBehaviour
     /// </summary>
     void Update()
     {
+        gameObject.GetComponent<Rigidbody>().position = transform.position;
+
         // アンカーの更新
         AnchorUpdate();
         // プレイヤーの移動
         PlayerMove();
         // アンカーのリセット
         ResetAnchorCollision();
+
+        gameObject.GetComponent<Rigidbody>().position = transform.position;
     }
 
     /// <summary>
@@ -98,7 +102,7 @@ public class PlayerControl : MonoBehaviour
     void AnchorPush(int num)
     {
         // キー判定
-        if (Input.GetKey(m_key[num])) m_anchorFlag[num] = 1;
+        if (Input.GetKeyDown(m_key[num])) m_anchorFlag[num] = 1;
     }
 
     /// <summary>
@@ -137,7 +141,7 @@ public class PlayerControl : MonoBehaviour
     void AnchorFixed(int num)
     {
         // キー判定
-        if (Input.GetKey(m_key[num])) m_anchorFlag[num] = 3;
+        if (Input.GetKeyDown(m_key[num])) m_anchorFlag[num] = 3;
     }
 
     /// <summary>
@@ -194,6 +198,19 @@ public class PlayerControl : MonoBehaviour
                     // その他
                 default:
                     break;
+            }
+        }
+    }
+
+    void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.tag == "Wall")
+        {
+            for (int i = 0; i < m_anchorFlag.Count; i++)
+            {
+                if(m_anchorFlag[i] == 2) {
+
+                }
             }
         }
     }
