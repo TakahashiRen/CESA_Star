@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// シーンの変更 (Title -> )
@@ -10,9 +9,7 @@ public class ChangeTitleScene : MonoBehaviour {
     /// </summary>
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            // シーンの変更
-            SceneManager.LoadScene("");
-            Debug.Log("シーンの移動");
+            PlayChangeScene.ChangeScene("Stage_01");
         }
     }
 }

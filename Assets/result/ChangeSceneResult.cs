@@ -13,6 +13,6 @@ public class ChangeSceneResult : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
-        PlayChangeScene.ChangeScene("Stage_01");
+        PlayChangeScene.ChangeScene("TitleScene");
     }
 }
