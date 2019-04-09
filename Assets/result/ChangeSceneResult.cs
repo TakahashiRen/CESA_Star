@@ -12,6 +12,7 @@ public class ChangeSceneResult : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
         PlayChangeScene.ChangeScene("Stage_01");
     }
 }

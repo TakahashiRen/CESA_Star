@@ -40,6 +40,6 @@ public class ResultTime : MonoBehaviour
     public void SeveTime()
     {
         // 時間の保存
-        ScoreData.time = m_timer;
+        //ScoreData.time = m_timer;
     }
 }

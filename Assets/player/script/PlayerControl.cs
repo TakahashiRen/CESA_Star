@@ -223,7 +223,7 @@ public class PlayerControl : MonoBehaviour
     {
         if(other.gameObject.tag == "Goal") {
             // 時間の保存
-            m_timer.GetComponent<ResultTime>().SeveTime();
+            //m_timer.GetComponent<ResultTime>().SeveTime();
             PlayChangeScene.ChangeScene("ResultScene");
         }
     }
