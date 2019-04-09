@@ -411,7 +411,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 110}
-  m_SizeDelta: {x: 360, y: 100}
+  m_SizeDelta: {x: 613.36, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1236875906
 MonoBehaviour:
@@ -461,7 +461,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Title_Star
+  m_Text: "\u30B9\u30BF\u30FC\u30A2\u30F3\u30AB\u30FC"
 --- !u!222 &1236875908
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -720,6 +720,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2051486679}
+  - component: {fileID: 2051486680}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -741,3 +742,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2051486680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051486678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404c9ef38c652f342a0cb7a8f28b41ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

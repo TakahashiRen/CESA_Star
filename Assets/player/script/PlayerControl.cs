@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class PlayerControl : MonoBehaviour
 {
+
+
     // 速さ
     public float m_speed;
     public float m_anchorSpeed;
@@ -173,7 +175,6 @@ public class PlayerControl : MonoBehaviour
     void AnchorUpdate()
     {
         for(int i = 0; i < (int)StrKey.NOME;i++) {
-
             switch (m_anchorFlag[i]) {
                     // プレイヤーにくっついている
                 case 0:
