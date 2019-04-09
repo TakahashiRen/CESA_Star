@@ -34,6 +34,9 @@ public class PlayerControl : MonoBehaviour
     // キー
     private KeyCode[] m_key = { KeyCode.E, KeyCode.W, KeyCode.O, KeyCode.P, KeyCode.Q };
 
+    // 時間の保存用
+    public GameObject m_timer;
+
     /// <summary>
     /// 初期化
     /// </summary>
@@ -209,5 +212,19 @@ public class PlayerControl : MonoBehaviour
     public List<uint> GetState()
     {
         return m_anchorFlag;
+    }
+
+
+    /// <summary>
+    /// 当たり判定
+    /// </summary>
+    /// <param name="other">当たったものの情報</param>
+    void OnCollisionStay(Collision other)
+    {
+        if(other.gameObject.tag == "Goal") {
+            // 時間の保存
+            //m_timer.GetComponent<ResultTime>().SeveTime();
+            PlayChangeScene.ChangeScene("ResultScene");
+        }
     }
 }
