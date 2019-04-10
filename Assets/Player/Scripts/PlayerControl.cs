@@ -7,7 +7,16 @@ using UnityEngine;
 /// </summary>
 public class PlayerControl : MonoBehaviour
 {
-
+    /// <summary>
+    /// アンカーの状態
+    /// </summary>
+    private enum AnchorState {
+        Stay,   // 何もなし
+        Firing, // 離れている(移動中
+        Fixed,  // 固定
+        Return, // もどれ如意棒
+        Move,
+    }
 
     // 速さ
     public float m_speed;
@@ -59,16 +68,12 @@ public class PlayerControl : MonoBehaviour
     /// </summary>
     void Update()
     {
-        gameObject.GetComponent<Rigidbody>().position = transform.position;
-
         // アンカーの更新
         AnchorUpdate();
         // プレイヤーの移動
-        PlayerMove();
+        // PlayerMove();
         // アンカーのリセット
         ResetAnchorCollision();
-
-        gameObject.GetComponent<Rigidbody>().position = transform.position;
     }
 
     /// <summary>
@@ -76,6 +81,7 @@ public class PlayerControl : MonoBehaviour
     /// </summary>
     void PlayerMove()
     {
+
         // 状態リスト
         List<int> state = new List<int>();
         for (int i = 0; i < m_anchorFlag.Count; i++) {
@@ -118,9 +124,19 @@ public class PlayerControl : MonoBehaviour
     {
         m_anchor[num].transform.position += m_anchor[num].transform.up * m_speed;
         if (m_anchorCollList[num].m_collisionFlag) {
+            for(int i= 0; i < m_anchorFlag.Count; i++) {
+                if(m_anchorFlag[i] == 2) {
+                    m_anchorFlag[i] = 3;
+
+                    // m_anchorFlag[num] = 3;
+                    // return;
+                }
+            }            
             m_anchorFlag[num] = 2;
             return;
         }
+
+
         // 最大距離の計測
         if (Vector3.Distance(m_anchor[num].transform.position, transform.position) > m_len) {
             m_anchorFlag[num] = 3;
@@ -146,7 +162,10 @@ public class PlayerControl : MonoBehaviour
     void AnchorFixed(int num)
     {
         // キー判定
-        if (Input.GetKeyDown(m_key[num])) m_anchorFlag[num] = 3;
+        if (Input.GetKeyDown(m_key[num]))
+        {
+            m_anchorFlag[num] = 4;
+        }
     }
 
     /// <summary>
@@ -163,10 +182,35 @@ public class PlayerControl : MonoBehaviour
             m_anchorCollList[num].m_collisionFlag = false;
             // 少しのずれを調整
             m_anchor[num].transform.localPosition = m_startPosition[num];
-            // 状態を戻すS
+            // 状態を戻す
             m_anchorFlag[num] = 0;
         }
        
+    }
+
+    /// <summary>
+    /// プレイヤーの移動
+    /// </summary>
+    /// <param name="num">アンカー番号</param>
+    void PlayerMove(int num) {
+        // 位置の保管
+        var tmpPosition = m_anchor[num].transform.position;
+        // 距離の確認
+        var dis = Vector3.Distance(transform.position, tmpPosition);
+        // 方向ベクトルの取得
+        var dir = (m_anchor[num].transform.position - transform.position).normalized;
+        // 移動
+        transform.position += dir * m_speed;
+        // 動かないように固定
+        m_anchor[num].transform.position = tmpPosition;
+
+        // 移動完了後の処理
+        if(dis < 1f) {
+            // 少しのずれを調整
+            m_anchor[num].transform.localPosition = m_startPosition[num];
+            // 状態の変更
+            m_anchorFlag[num] = 0;
+        }
     }
 
     /// <summary>
@@ -195,10 +239,14 @@ public class PlayerControl : MonoBehaviour
 
                     // 戻っている(移動中
                 case 3:
-                    // アンカーを戻す
+                    // プレイヤーを引っ張る
                     AnchorReturn(i);
                     break;
 
+                    // プレイヤーを移動させる
+                case 4:
+                    PlayerMove(i);
+                    break;
                     // その他
                 default:
                     break;

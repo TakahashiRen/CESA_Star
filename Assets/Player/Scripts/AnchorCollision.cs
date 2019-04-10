@@ -14,6 +14,11 @@ public class AnchorCollision : MonoBehaviour
     /// <param name="other">当たったものの情報</param>
     void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.tag == "Wall")   m_collisionFlag = true;
+
+        if (other.gameObject.tag == "Wall")
+        {
+            Debug.Log("刺さった");
+            m_collisionFlag = true;
+        }
     }
 }
